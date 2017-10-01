@@ -31,17 +31,17 @@ class SwiftClockTests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let app = XCUIApplication()
-        let element = XCUIApplication().children(matching: .Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1)
-        element.tap()
-        element.tap()
-        element.tap()
-        element.tap()
-        element.tap()
-        let fromCoordinate = app.coordinateWithNormalizedOffset(CGVector(dx: 0, dy: 10))
-        let toCoordinate = app.coordinateWithNormalizedOffset(CGVector(dx: 0, dy: 20))
-        fromCoordinate.pressForDuration(0, thenDragToCoordinate: toCoordinate)
-        
+//        let app = XCUIApplication()
+//        let element = XCUIApplication().children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element(boundBy: 1)
+//        element.tap()
+//        element.tap()
+//        element.tap()
+//        element.tap()
+//        element.tap()
+//        let fromCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 10))
+//        let toCoordinate = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 20))
+//        fromCoordinate.press(forDuration: 0, thenDragTo: toCoordinate)
+
     }
     
 }
