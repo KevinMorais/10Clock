@@ -31,8 +31,12 @@ open class TenClock : UIControl{
     open var delegate:TenClockDelegate?
     //overall inset. Controls all sizes.
     @IBInspectable var insetAmount: CGFloat = 40
-    var internalShift: CGFloat = 5;
-    var pathWidth:CGFloat = 54
+    
+    var internalShift: CGFloat = 5
+
+    open var pathWidth:CGFloat = 54
+    
+    open var stepSize: CGFloat = 5
 
     var timeStepSize: CGFloat = 5
     let gradientLayer = CAGradientLayer()
@@ -198,7 +202,7 @@ open class TenClock : UIControl{
         let components = self.calendar.dateComponents(units, from: date)
         let min = Double(  60 * components.hour! + components.minute! )
 
-        return medStepFunction(CGFloat(Double.pi / 2 - ( min / (12 * 60)) * 2 * Double.pi), stepSize: CGFloat( 2 * Double.pi / (12 * 60 / 5)))
+        return medStepFunction(CGFloat(Double.pi / 2 - ( min / (12 * 60)) * 2 * Double.pi), stepSize: CGFloat( 2 * Double.pi / (12 * 60 / self.stepSize)))
     }
 
     // input an angle, output: 0 to 4pi
@@ -206,7 +210,7 @@ open class TenClock : UIControl{
         let dAngle = Double(angle)
         let min = CGFloat(((Double.pi / 2 - dAngle) / (2 * Double.pi)) * (12 * 60))
         let startOfToday = Calendar.current.startOfDay(for: Date())
-        return self.calendar.date(byAdding: .minute, value: Int(medStepFunction(min, stepSize: 5/* minute steps*/)), to: startOfToday)!
+        return self.calendar.date(byAdding: .minute, value: Int(medStepFunction(min, stepSize: self.stepSize/* minute steps*/)), to: startOfToday)!
     }
     override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
