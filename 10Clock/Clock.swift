@@ -202,7 +202,7 @@ open class TenClock : UIControl{
         let components = self.calendar.dateComponents(units, from: date)
         let min = Double(  60 * components.hour! + components.minute! )
 
-        return medStepFunction(CGFloat(Double.pi / 2 - ( min / (12 * 60)) * 2 * Double.pi), stepSize: CGFloat( 2 * Double.pi / (12 * 60 / self.stepSize)))
+        return medStepFunction(CGFloat(Double.pi / 2 - ( min / (12 * 60)) * 2 * Double.pi), stepSize: CGFloat( 2 * Double.pi / (12 * 60 / Double(self.stepSize))))
     }
 
     // input an angle, output: 0 to 4pi
