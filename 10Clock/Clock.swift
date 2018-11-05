@@ -36,6 +36,8 @@ open class TenClock : UIControl{
 
     open var pathWidth:CGFloat = 54
     
+    open var gradiantColors: [CGColor]?
+    
     open var stepSize: CGFloat = 5
 
     var timeStepSize: CGFloat = 5
@@ -248,12 +250,15 @@ open class TenClock : UIControl{
 
     }
     func updateGradientLayer() {
-
-        gradientLayer.colors =
-            [tintColor,
-                tintColor.modified(withAdditionalHue: -0.08, additionalSaturation: 0.15, additionalBrightness: 0.2)]
+        
+        if let gradiantColors = self.gradiantColors {
+            gradientLayer.colors = gradiantColors
+        } else {
+            gradientLayer.colors = [tintColor,
+                                    tintColor.modified(withAdditionalHue: -0.08, additionalSaturation: 0.15, additionalBrightness: 0.2)]
                 .map(disabledFormattedColor)
                 .map{$0.cgColor}
+        }
         gradientLayer.mask = overallPathLayer
         gradientLayer.startPoint = CGPoint(x:0,y:0)
     }
